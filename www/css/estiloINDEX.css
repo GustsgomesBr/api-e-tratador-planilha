@@ -1,0 +1,41 @@
+body{
+    background: rgb(230, 130, 0);
+    font: normal 20pt Arial;
+    }
+    header{
+        color: white;
+        text-align: center;
+    }
+    section{
+        background: white;
+        border-radius: 10px;
+        padding: 15px;
+        overflow: auto;
+        margin: auto;
+        align-items: center;
+        display: flex;
+        box-shadow: 5px 5px 10px rgb(0, 0, 0);
+    
+    }
+    footer{
+        color: white;
+        text-align: center;
+        font-style: italic;
+    }
+    h5{
+        color: rgb(255, 130, 41);
+    }
+    .bloco{
+        margin-top: 10px;
+        margin-bottom: 10px;
+        color: white;
+        font: normal 20pt Arial;
+        margin-right: 5px;
+        margin-left: 5px;
+        background: rgb(240, 240, 240);
+        width: 300px;
+        height: 200px;
+        border-radius: 10px;
+        display: block;
+        text-align: center;
+    }

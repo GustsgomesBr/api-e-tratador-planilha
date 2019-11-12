@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>TRATAR PLANILHA</title>
+    <link rel="stylesheet" href="css/estiloPlanilha.css">
+</head>
+<body>
+    <header>
+       <h1>TRATAR PLANILHA</h1>
+    </header>
+    <section>
+    
+    <div>
+        <select name="select" id="selectid" onchange="testeSelect()">
+            <option value="valor1">PROJUDI MT</option> 
+            <option value="valor2">PROJUDI PR</option>
+            <option value="valor3">E-PROC TO</option>
+        </select>
+    </div>
+
+    <div>
+        <iframe id="myHtml" src="pages/editPlanilha/projudimt.html" style="width: 1200px; height: 500px;"></iframe>
+    </div>
+    
+    </section>
+    <footer>
+        <p>&copy;BiitterNetwork</p>
+    </footer>
+    <script src="script/script.js"></script>
+    <script>
+    function testeSelect(){
+        document.getElementById('myHtml').src = ""
+        if(document.getElementById('selectid').value == "valor1"){
+            document.getElementById('myHtml').src = "pages/editPlanilha/projudimt.html"
+        }
+    }
+
+    </script>
+</body>
+</html>
