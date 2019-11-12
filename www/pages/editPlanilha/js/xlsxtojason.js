@@ -13,11 +13,9 @@
                         
                           var XL_row_object = XLSX.utils.sheet_to_row_object_array(workbook.Sheets[sheetName]);
                           var json_object = JSON.stringify(XL_row_object);
-                        //  document.getElementById("jsonObject").innerHTML = json_object;
-                          
+                          document.getElementById("info").innerHTML = "PLANILHA SELECIONADA";
+                          document.getElementById("botaoOk").disabled = false;
                           jsonconvertido = json_object;
-
-
 
                         })
                     };

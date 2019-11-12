@@ -8,12 +8,11 @@
     <script src="js/jquery.js"> </script>
     <script lang="javascript" src="js/xlsx.full.min.js"></script>
     <script src="js/xlsxtojason.js"></script>
-    <script src="js/tratarplanilha.js"></script>
 </head>
 <body>
     <section>
         <input type="file" id="fileUploader" name="fileUploader" accept=".xls, .xlsx"></input>
-        <button id="botaoOk" onclick="enviar()">OK</button>
+        <button id="botaoOk" onclick="enviar()" disabled="true">ENVIAR</button>
         <br></br>
         <label id="info">ENVIE A PLANILHA</label>
         <br></br>
@@ -31,12 +30,16 @@
         if(xmlt.readyState === 4){
             if(xmlt.status === 200){
                 resposta.innerHTML = 'baixe a planilha clicando <a href="../../api/planilharesposta.xlsx">AQUI</a>'
+                }else{
+                    resposta.innerHTML = "não foi possível entrar em contato com a api"
                 }
+            }else{
+                resposta.innerHTML = 'não foi possível entrar em contato com a api'
             }
         }
     }
 
     
 </script>
-    <script sr0="script.js"></script>
+    
 </html>
