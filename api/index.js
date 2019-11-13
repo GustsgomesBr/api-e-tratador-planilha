@@ -5,10 +5,10 @@ app = express();
 app.listen(8080, function(){console.log('o servidor está rodando na porta 8080')})
 
 var tiposPeticao = {
-arquivo: ["contestacao", "recurso", "impugnacao", "procuracao", "documento", "comprovante", "anexo", "guia", "pagamento", "contrato"],
-equivalenciaTIPO: ["Contestação", "Recurso Inominado", "Impugnação de calculo"],
-equivalenciaTIPO_ARQUIVO: ["Contestação", "Petição", "Petição", "Procuração", "Outros", "Outros", "Outros", "Outros", "Outros"],
-arquivoDescricao: ["", "", "", "", "Documentos", "Comprovante", "Anexo", "Guias", "Comprovante de Pagamento", "Contrato"]
+arquivo: ["contestacao", "recurso", "impugnacao", "peticao", "execucao", "procuracao", "documento", "comprovante", "anexo", "guia", "pagamento", "contrato"],
+equivalenciaTIPO: ["Contestação", "Recurso Inominado", "Impugnação de calculo", "Petição", "Solicitação de Execução de Sentença"],
+equivalenciaTIPO_ARQUIVO: ["Contestação", "Petição", "Petição", "Petição", "Petição", "Procuração", "Outros", "Outros", "Outros", "Outros", "Outros"],
+arquivoDescricao: ["", "", "", "", "", "", "Documentos", "Comprovante", "Anexo", "Guias", "Comprovante de Pagamento", "Contrato"]
 }
 app.use(function(req, res, next) {
     res.header("Access-Control-Allow-Origin", "*");
@@ -24,11 +24,11 @@ function Tratar(plan){
 	while (i < planilha.length){
 		let int = 0
 		while(int < tiposPeticao.arquivo.length){
-			if (planilha[i].NOME.search(tiposPeticao.arquivo[int]) != '-1'){
+			if (planilha[i].ARQUIVO.search(tiposPeticao.arquivo[int]) != '-1'){
 				planilha[i].TIPO = tiposPeticao.equivalenciaTIPO[int]
 				planilha[i].TIPO_ARQUIVO = tiposPeticao.equivalenciaTIPO_ARQUIVO[int];
-				console.log(planilha[i])
-				if (int > 3){
+				
+				if (int > 5){
 					planilha[i].DESCRICAO = tiposPeticao.arquivoDescricao[int];
 				}else{
 					planilha[i].DESCRICAO = ""
@@ -40,6 +40,7 @@ function Tratar(plan){
 				ultimoanexo.ultimoId = planilha[i].NOME.replace(/ .*/,'');
 				}
 			}
+			console.log(planilha[i])
 			int++	
 		}
 
