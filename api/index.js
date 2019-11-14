@@ -16,7 +16,7 @@ app.use(function(req, res, next) {
     next();
   });
 
-function Tratar(plan){
+function Tratar(plan, user){
 	const planilha = plan
 	var i = 0;
 	var ultimoanexo = {ultimoTipo: "", ultimoId:""};
@@ -33,11 +33,11 @@ function Tratar(plan){
 				}else{
 					planilha[i].DESCRICAO = ""
 				}
-				if (ultimoanexo.ultimoId === planilha[i].NOME.replace(/ .*/,'')){
+				if (ultimoanexo.ultimoId === planilha[i].ARQUIVO.replace(/ .*/,'')){
 					planilha[i].TIPO = ultimoanexo.ultimoTipo;
 				}else{
 				ultimoanexo.ultimoTipo = planilha[i].TIPO
-				ultimoanexo.ultimoId = planilha[i].NOME.replace(/ .*/,'');
+				ultimoanexo.ultimoId = planilha[i].ARQUIVO.replace(/ .*/,'');
 				}
 			}
 			console.log(planilha[i])
@@ -56,7 +56,9 @@ var ws = XLSX.utils.json_to_sheet(planilha);
 var wb = XLSX.utils.book_new();
 XLSX.utils.book_append_sheet(wb, ws, "Planilha");
 
-XLSX.writeFile(wb, "planilharesposta.xlsx");
+XLSX.writeFile(wb, "C:/Users/Gusts/Desktop/projetoBot/site/www/" + user + "_result.xlsx");
+//fs.writeFileSync("C:/Users/Gusts/Desktop/projetoBot/site/www/planilharesposta.xlsx", content);
+
 }
 
 
@@ -64,7 +66,9 @@ XLSX.writeFile(wb, "planilharesposta.xlsx");
 app.get('/planilha', function(req, resp)
 {
 	var jsonfile = req.query.json;
-	Tratar(JSON.parse(jsonfile))
+	var user = req.query.user;
+	console.log(jsonfile);
+	Tratar(JSON.parse(jsonfile), user)
 	resp.send("ok")
 
 })

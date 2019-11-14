@@ -11,6 +11,7 @@
 </head>
 <body>
     <section>
+        <input type="text" id="username" style="height: 25px; width: 300px;" placeholder="NOME DA PLANILHA"></input>
         <input type="file" id="fileUploader" name="fileUploader" accept=".xls, .xlsx"></input>
         <button id="botaoOk" onclick="enviar()" disabled="true">ENVIAR</button>
         <br></br>
@@ -23,13 +24,16 @@
     var resposta = document.getElementById('info');
     var xmlt= new XMLHttpRequest();
     function enviar(){
+        let user = document.getElementById("username").value;
+        if(user != ""){
         resposta.innerHTML = "Enviando...";
-        xmlt.open('GET', "http://localhost:8080/planilha?json=" + jsonconvertido);
-        xmlt.send("http://localhost:8080/planilha?json=" + jsonconvertido)
+        xmlt.open('GET', "http://localhost:8080/planilha?json=" + jsonconvertido + "&user=" + user);
+        xmlt.send("http://localhost:8080/planilha?json=" + jsonconvertido + "&user=" + user)
         xmlt.onreadystatechange = function(){
         if(xmlt.readyState === 4){
             if(xmlt.status === 200){
-                resposta.innerHTML = 'baixe a planilha clicando <a href="../../api/planilharesposta.xlsx">AQUI</a>'
+                let local = '"../../' + user + '_result.xlsx"'
+                resposta.innerHTML = 'baixe a planilha clicando <a href='+ local + '>AQUI</a>'
                 }else{
                     resposta.innerHTML = "não foi possível entrar em contato com a api"
                 }
@@ -37,7 +41,10 @@
                 resposta.innerHTML = 'não foi possível entrar em contato com a api'
             }
         }
+    }else{
+        resposta.innerHTML = "Por Favor, defina o nome da planilha"
     }
+}
 
     
 </script>
