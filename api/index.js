@@ -56,7 +56,7 @@ var ws = XLSX.utils.json_to_sheet(planilha);
 var wb = XLSX.utils.book_new();
 XLSX.utils.book_append_sheet(wb, ws, "Planilha");
 
-XLSX.writeFile(wb, "C:/Users/Gusts/Desktop/projetoBot/site/www/" + user + "_result.xlsx");
+XLSX.writeFile(wb, "C:/Users/Gusts/Desktop/projetoBot/site/www/respostas/" + user + "_result.xlsx");
 //fs.writeFileSync("C:/Users/Gusts/Desktop/projetoBot/site/www/planilharesposta.xlsx", content);
 
 }

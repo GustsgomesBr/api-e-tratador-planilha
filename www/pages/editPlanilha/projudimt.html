@@ -32,7 +32,7 @@
         xmlt.onreadystatechange = function(){
         if(xmlt.readyState === 4){
             if(xmlt.status === 200){
-                let local = '"../../' + user + '_result.xlsx"'
+                let local = '"../../respostas/' + user + '_result.xlsx"'
                 resposta.innerHTML = 'baixe a planilha clicando <a href='+ local + '>AQUI</a>'
                 }else{
                     resposta.innerHTML = "não foi possível entrar em contato com a api"
